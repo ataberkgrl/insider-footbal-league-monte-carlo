@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <table th:fragment="league_table(season)">
+        <tr>
+            <th colspan="7">League Table</th>
+        </tr>
+        <tr>
+            <th>Teams</th>
+            <th>PTS</th>
+            <th>P</th>
+            <th>W</th>
+            <th>D</th>
+            <th>L</th>
+            <th>GD</th>
+        </tr>
+        <tr th:each="teamStanding : ${season.teamStandings}">
+            <th th:text="${teamStanding.team.name}"></th>
+            <th th:text="${teamStanding.points}"></th>
+            <th th:text="${teamStanding.playedGame}"></th>
+            <th th:text="${teamStanding.winCount}"></th>
+            <th th:text="${teamStanding.drawCount}"></th>
+            <th th:text="${teamStanding.loseCount}"></th>
+            <th th:text="${teamStanding.goalDifference}"></th>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Seasons</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th colspan="3">Seasons</th>
+        </tr>
+        <tr>
+            <th>Id</th>
+            <th>Status</th>
+        </tr>
+        <tr th:each="season : ${seasonList}">
+            <th th:text="${season.id}"></th>
+            <th th:if="${season.isActive}" th:text="On-going"></th>
+            <th th:if="${!season.isActive}" th:text="Finished"></th>
+            <th><a th:href="'/season/' + ${season.id}">Details</a></th>
+        </tr>
+    </table>
+</body>
+</html>

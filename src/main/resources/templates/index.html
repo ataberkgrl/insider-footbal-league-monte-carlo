@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insider - Premier League</title>
+</head>
+<body>
+    <th:block th:if="${season != null}">
+        <a href="/season">View Previous Seasons</a>
+        <div>
+            <div style="display: flex; flex-direction: row">
+                <div th:replace="fragments/league_table :: league_table (${season})"></div>
+                <div th:replace="fragments/match_results :: match_results (${currentWeekMatches})"></div>
+            </div>
+            <div style="display: flex; flex-direction: row;" th:if="${season.isActive}">
+                <form method="post" action="/season/advance-season">
+                    <button type="submit">Play All</button>
+                </form>
+                <form method="post" action="/season/advance-week">
+                    <button type="submit">Next Week</button>
+                </form>
+            </div>
+            <div th:if="${!season.isActive}">
+                <form method="post" action="/season/">
+                    <button type="submit">Start New Season</button>
+                </form>
+            </div>
+        </div>
+
+        <div th:replace="fragments/predictions"></div>
+    </th:block>
+
+    <div th:if="${season == null}">
+        <h3>There aren't any season yet.</h3>
+        <form method="post" action="/season">
+            <button type="submit">Start New Season</button>
+        </form>
+    </div>
+</body>
+</html>

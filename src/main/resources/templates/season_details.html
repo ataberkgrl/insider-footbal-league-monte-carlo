@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Season Details</title>
+</head>
+<body>
+    <div th:replace="fragments/league_table :: league_table (${season})"></div>
+    <table>
+        <tr>
+            <th colspan="7">Matches Played</th>
+        </tr>
+        <tr>
+            <th>Week</th>
+            <th>Home Team</th>
+            <th>Score</th>
+            <th>Away Team</th>
+        </tr>
+        <tr th:each="match : ${matchesPlayed}">
+            <th th:text="${match.week}"></th>
+            <th th:text="${match.homeTeam.name}"></th>
+            <th th:text="${match.homeScore} + '-' + ${match.awayScore}"></th>
+            <th th:text="${match.awayTeam.name}"></th>
+        </tr>
+    </table>
+</body>
+</html>
